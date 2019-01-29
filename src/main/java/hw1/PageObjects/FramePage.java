@@ -13,6 +13,7 @@ public class FramePage {
 
     public FramePage(WebDriver driver) {
         PageFactory.initElements(driver,this);
+        // TODO Do you have a chance to read IDEA warning ?
         this.driver = driver;
     }
 

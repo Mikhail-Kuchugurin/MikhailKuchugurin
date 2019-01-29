@@ -5,7 +5,7 @@ import hw1.PageObjects.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
+// TODO Take a look on home task please. Could you please explain the reason of priority in this particular case.
 public class SimpleTests extends BeforeAndAfter {
 
     private String user = "epam";
@@ -14,6 +14,8 @@ public class SimpleTests extends BeforeAndAfter {
     @Test(priority = 1)
     public void checkBrowserTitleFirst() {
         //2 Check that Browser title equals "Home Page"
+        // TODO This is inappropriate place for PO initialisation.
+        // TODO Have you ever heard smth about DRY ?
         MainPage mainPage = new MainPage(driver);
         Assert.assertEquals(mainPage.getBrowserTitle(), "Home Page");
     }

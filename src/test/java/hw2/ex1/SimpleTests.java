@@ -7,11 +7,16 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+
+// TODO Pay attention on imports.
+// TODO Is this really necessary to specify full path to class ?
 public class SimpleTests extends hw2.ex1.BeforeAndAfter {
 
     private static final int THREAD_POOL_SIZE = 3;
     private static final int INVOCATION_COUNT = 3;
 
+    // TODO Could you please explain the idea of this DP ? What should you do in case the benefits on home page will be extended ?
+    // TODO Read hw carefully please.
     @DataProvider(name = "LoginPass")
     public static Object[][] credentials() {
         return new Object[][]{

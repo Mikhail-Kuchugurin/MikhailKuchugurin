@@ -42,7 +42,7 @@ public class MainPage {
     @FindBy(xpath = "//span[contains(text(),'To be flexible')]")
     private WebElement txtCustom;
 
-    @FindBy(xpath = "//span[contains(text(),'To be multiplatform')]"  )
+    @FindBy(xpath = "//span[contains(text(),'To be multiplatform')]")
     private WebElement txtMulti;
 
     @FindBy(xpath = "//span[contains(text(),'Already have good base')]")
@@ -68,20 +68,20 @@ public class MainPage {
 
 
     public MainPage(WebDriver driver) {
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
 
-
-    public String getUserName(){
+    public String getUserName() {
         return userName.getText();
     }
 
-    public String getBrowserTitle(){
+    public String getBrowserTitle() {
         return driver.getTitle();
     }
 
+    // TODO Could you please explain the reason of this 'incapsulation'.
     public WebElement getMenuHome() {
         return menuHome;
     }
@@ -153,8 +153,9 @@ public class MainPage {
     public WebElement getFooter() {
         return footer;
     }
+    // !TODO
 
-    public FramePage goToFrame(){
+    public FramePage goToFrame() {
         driver.switchTo().frame("iframe");
         return new FramePage(driver);
     }
