@@ -9,11 +9,9 @@
                 <include name="Regression"/>
             </run>
         </groups>
-        <classes>
-            <class name="hw2.ex2.ex22Regression.SimpleTests"/>
-            <class name="hw2.ex2.ex24SmokeAndRegerssion.SimpleTests"/>
-            <class name="hw2.ex2.ex23SmokeAndSomeRegression.SimpleTests"/>
-        </classes>
+        <packages>
+            <package name="hw2.ex2.*"/>
+        </packages>
 
     </test>
 

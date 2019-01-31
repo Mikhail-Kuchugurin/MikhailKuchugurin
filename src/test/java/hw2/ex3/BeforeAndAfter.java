@@ -15,18 +15,18 @@ public class BeforeAndAfter {
     @BeforeSuite
     public void runBeforeSuite() {
         //1 Run browser and open test site
-        System.setProperty("webdriver.chrome.driver", "\\src\\main\\resources\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+
+    }
+
+    @BeforeClass
+    public void runBeforeClass (){
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-
-
-    }
-    @BeforeClass
-    public void runBeforeClass (){
         driver.get(url);
-
     }
+
     @BeforeMethod
     public void runBeforeMethod(){
         driver.manage().window().maximize();
@@ -34,18 +34,18 @@ public class BeforeAndAfter {
 
     @AfterMethod
     public void runAfterMethod(){
-        System.out.println(System.currentTimeMillis());
+        System.out.println(driver.getTitle());
     }
 
     @AfterClass
     public void runAfterClass(){
-        System.out.println(driver.getTitle());
+        //17 close browser
+        driver.close();
+
     }
 
     @AfterSuite
     public void runAfterSuite(){
-        //17 close browser
-        driver.close();
-
+        System.out.println(System.currentTimeMillis());
     }
 }

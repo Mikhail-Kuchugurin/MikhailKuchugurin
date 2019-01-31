@@ -1,28 +1,31 @@
-package hw3;
+package hw2.ex2.ex23SmokeAndSomeRegression;
 
 
-import hw3.LoginPage;
-import hw3.MainPage;
+import hw2.LoginPage;
+import hw2.MainPage;
+import hw2.ex2.BeforeAndAfter;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import hw3.Users;
 
 
-public class SimpleTests extends BeforeAndAfter{
+public class SimpleTests1 extends BeforeAndAfter {
 
-    @Test()
+    private String user = "epam";
+    private String pass = "1234";
+
+    @Test(groups = {"Regression"})
     public void asserts() {
         //2 Check that Browser title equals "Home Page"
-        Assert.assertEquals(driver.getTitle(), "Home Page");
+        Assert.assertEquals(webDriver.get().getTitle(), "Home Page");
 
         //3 fill fields login and password
-        MainPage mainPage = new LoginPage(driver).performLogin(Users.PITER.login, Users.PITER.pass);
+        MainPage mainPage = new LoginPage(webDriver.get()).performLogin(user, pass);
 
         //4 check user name
-        Assert.assertEquals(mainPage.userName.getText(), Users.PITER.FirstAndLastName);
+        Assert.assertEquals(mainPage.userName.getText(), "PITER CHAILOVSKII");
 
         //5 Check that Browser title equals "Home Page"
-        Assert.assertEquals(driver.getTitle(), "Home Page");
+        Assert.assertEquals(webDriver.get().getTitle(), "Home Page");
 
         //6 Header buttons are displayed
         Assert.assertTrue(mainPage.menuHome.isDisplayed());
@@ -69,7 +72,7 @@ public class SimpleTests extends BeforeAndAfter{
         Assert.assertTrue(mainPage.goToFrame().logo.isDisplayed());
 
         //12 switch to original window
-        driver.switchTo().defaultContent();
+        webDriver.get().switchTo().defaultContent();
 
         //13 check text of sub header
         Assert.assertEquals(mainPage.subHeaderElement.getText(), "JDI GITHUB");

@@ -16,7 +16,7 @@ public class BeforeAndAfter {
     @BeforeSuite
     public void openBrowser() {
         //1 Run browser and open test site
-        System.setProperty("webdriver.chrome.driver", "\\src\\main\\resources\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get(url);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

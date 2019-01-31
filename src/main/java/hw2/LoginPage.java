@@ -8,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage {
     private WebDriver driver;
 
-
     @FindBy(xpath = "//img[@id='user-icon']")
     private WebElement btnLogin;
 

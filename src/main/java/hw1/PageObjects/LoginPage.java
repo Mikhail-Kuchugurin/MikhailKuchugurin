@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
-    private static WebDriver driver;
+    private WebDriver driver;
 
 
     @FindBy(xpath = "//img[@id='user-icon']")

@@ -2,48 +2,34 @@ package hw2.ex1;
 
 import hw2.LoginPage;
 import hw2.MainPage;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class SimpleTests extends hw2.ex1.BeforeAndAfter {
+public class SimpleTests extends BeforeAndAfter {
 
-    private static final int THREAD_POOL_SIZE = 3;
-    private static final int INVOCATION_COUNT = 3;
+    private static final int THREAD_POOL_SIZE = 2;
+    private static final int INVOCATION_COUNT = 2;
 
-    @DataProvider(name = "LoginPass")
-    public static Object[][] credentials() {
+
+    @DataProvider(name = "Results", parallel = true)
+    public static Object[][] elements() {
         return new Object[][]{
-                {"epam", "1234"}};
+                {"//span[contains(text(),'To include good practices')]", "To include good practices\nand ideas from successful\nEPAM project"},
+                {"//span[contains(text(),'To be flexible')]", "To be flexible and\ncustomizable"},
+                {"//span[contains(text(),'To be multiplatform')]", "To be multiplatform"},
+                {"//span[contains(text(),'Already have good base')]", "Already have good base\n(about 20 internal and\nsome external projects),\nwish to get more…"}};
+
     }
 
 
 
-    @Test(dataProvider = "LoginPass",threadPoolSize = THREAD_POOL_SIZE, invocationCount = INVOCATION_COUNT)
-    public void checkTextUnderImgPractice(String user, String pass) {
-        MainPage mainPage = new LoginPage(webDriver.get()).performLogin(user, pass);
-        Assert.assertEquals(mainPage.getTxtPractice().getText(), "To include good practices\n" + "and ideas from successful\n" + "EPAM project");
+    @Test(dataProvider = "Results",threadPoolSize = THREAD_POOL_SIZE, invocationCount = INVOCATION_COUNT)
+    public void checkTextsUnderImages(String actual, String expected) {
+        Assert.assertEquals(webDriver.get().findElement(By.xpath(actual)).getText(), expected);
     }
 
-
-    @Test(dataProvider = "LoginPass", threadPoolSize = THREAD_POOL_SIZE, invocationCount = INVOCATION_COUNT)
-    public void checkTextUnderImgCustom(String user, String pass) {
-        MainPage mainPage = new LoginPage(webDriver.get()).performLogin(user, pass);
-        Assert.assertEquals(mainPage.getTxtCustom().getText(), "To be flexible and\n" + "customizable");
-    }
-
-    @Test(dataProvider = "LoginPass", threadPoolSize = THREAD_POOL_SIZE, invocationCount = INVOCATION_COUNT)
-    public void checkTextUnderImgMulti(String user, String pass) {
-        MainPage mainPage = new LoginPage(webDriver.get()).performLogin(user, pass);
-        Assert.assertEquals(mainPage.getTxtMulti().getText(), "To be multiplatform");
-    }
-
-    @Test(dataProvider = "LoginPass", threadPoolSize = THREAD_POOL_SIZE, invocationCount = INVOCATION_COUNT)
-    public void checkTextUnderImgBase(String user, String pass) {
-        MainPage mainPage = new LoginPage(webDriver.get()).performLogin(user, pass);
-        Assert.assertEquals(mainPage.getTxtBase().getText(), "Already have good base\n" + "(about 20 internal and\n" + "some external projects),\n" + "wish to get more…");
-    }
 
 
 }
