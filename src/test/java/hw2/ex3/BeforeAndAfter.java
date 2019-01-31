@@ -7,10 +7,8 @@ import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 public class BeforeAndAfter {
+    private static final String url = "https://epam.github.io/JDI/";
     protected WebDriver driver;
-    private String url = "https://epam.github.io/JDI/";
-
-
 
     @BeforeSuite
     public void runBeforeSuite() {
@@ -20,7 +18,7 @@ public class BeforeAndAfter {
     }
 
     @BeforeClass
-    public void runBeforeClass (){
+    public void runBeforeClass() {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
@@ -28,24 +26,24 @@ public class BeforeAndAfter {
     }
 
     @BeforeMethod
-    public void runBeforeMethod(){
+    public void runBeforeMethod() {
         driver.manage().window().maximize();
     }
 
     @AfterMethod
-    public void runAfterMethod(){
+    public void runAfterMethod() {
         System.out.println(driver.getTitle());
     }
 
     @AfterClass
-    public void runAfterClass(){
+    public void runAfterClass() {
         //17 close browser
         driver.close();
 
     }
 
     @AfterSuite
-    public void runAfterSuite(){
+    public void runAfterSuite() {
         System.out.println(System.currentTimeMillis());
     }
 }

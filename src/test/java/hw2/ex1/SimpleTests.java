@@ -1,7 +1,5 @@
 package hw2.ex1;
 
-import hw2.LoginPage;
-import hw2.MainPage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -24,12 +22,10 @@ public class SimpleTests extends BeforeAndAfter {
     }
 
 
-
-    @Test(dataProvider = "Results",threadPoolSize = THREAD_POOL_SIZE, invocationCount = INVOCATION_COUNT)
+    @Test(dataProvider = "Results", threadPoolSize = THREAD_POOL_SIZE, invocationCount = INVOCATION_COUNT)
     public void checkTextsUnderImages(String actual, String expected) {
         Assert.assertEquals(webDriver.get().findElement(By.xpath(actual)).getText(), expected);
     }
-
 
 
 }

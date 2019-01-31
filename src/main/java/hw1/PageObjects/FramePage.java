@@ -6,13 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class FramePage {
-    private WebDriver driver;
-
     @FindBy(xpath = "//img[@id='epam_logo']")
     public WebElement logo;
+    private WebDriver driver;
 
     public FramePage(WebDriver driver) {
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 

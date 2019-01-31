@@ -10,8 +10,8 @@ import org.testng.annotations.Test;
 
 public class SimpleTests3 extends BeforeAndAfter {
 
-    private String user = "epam";
-    private String pass = "1234";
+    private static final String user = "epam";
+    private static final String pass = "1234";
 
     @Test(groups = "Smoke")
     public void asserts() {
@@ -88,7 +88,6 @@ public class SimpleTests3 extends BeforeAndAfter {
         Assert.assertTrue(mainPage.footer.isDisplayed());
 
     }
-
 
 
 }

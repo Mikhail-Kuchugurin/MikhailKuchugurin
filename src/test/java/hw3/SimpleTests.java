@@ -1,14 +1,11 @@
 package hw3;
 
 
-import hw3.LoginPage;
-import hw3.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import hw3.Users;
 
 
-public class SimpleTests extends BeforeAndAfter{
+public class SimpleTests extends BeforeAndAfter {
 
     @Test()
     public void asserts() {
@@ -85,7 +82,6 @@ public class SimpleTests extends BeforeAndAfter{
         Assert.assertTrue(mainPage.footer.isDisplayed());
 
     }
-
 
 
 }

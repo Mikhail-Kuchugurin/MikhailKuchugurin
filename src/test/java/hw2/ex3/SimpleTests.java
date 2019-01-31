@@ -1,6 +1,5 @@
 package hw2.ex3;
 
-import hw2.ex3.BeforeAndAfter;
 import hw2.LoginPage;
 import hw2.MainPage;
 import org.testng.Assert;
@@ -9,8 +8,8 @@ import org.testng.annotations.Test;
 
 public class SimpleTests extends BeforeAndAfter {
 
-    private String user = "epam";
-    private String pass = "1234";
+    private static final String user = "epam";
+    private static final String pass = "1234";
 
     @Test()
     public void asserts() {
@@ -87,7 +86,6 @@ public class SimpleTests extends BeforeAndAfter {
         Assert.assertTrue(mainPage.footer.isDisplayed());
 
     }
-
 
 
 }

@@ -21,13 +21,12 @@ public class LoginPage {
     private WebElement btnEnter;
 
 
-
     public LoginPage(WebDriver driver) {
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    public MainPage performLogin(String user, String pass){
+    public MainPage performLogin(String user, String pass) {
         btnLogin.click();
         fldLogin.sendKeys(user);
         fldPassword.sendKeys(pass);

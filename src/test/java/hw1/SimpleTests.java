@@ -1,16 +1,15 @@
 package hw1;
 
 import hw1.PageObjects.LoginPage;
-import org.testng.Assert;
 import hw1.PageObjects.MainPage;
-
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
 public class SimpleTests extends BeforeAndAfter {
 
-    private String user = "epam";
-    private String pass = "1234";
+    private static final String user = "epam";
+    private static final String pass = "1234";
 
     @Test()
     public void asserts() {
@@ -87,7 +86,6 @@ public class SimpleTests extends BeforeAndAfter {
         Assert.assertTrue(mainPage.footer.isDisplayed());
 
     }
-
 
 
 }

@@ -8,10 +8,8 @@ import org.testng.annotations.BeforeSuite;
 import java.util.concurrent.TimeUnit;
 
 public class BeforeAndAfter {
+    private static final String url = "https://epam.github.io/JDI/";
     protected WebDriver driver;
-    private String url = "https://epam.github.io/JDI/";
-
-
 
     @BeforeSuite
     public void openBrowser() {
@@ -27,7 +25,7 @@ public class BeforeAndAfter {
 
 
     @AfterSuite
-    public void closeBrowser(){
+    public void closeBrowser() {
         //17 close browser
         driver.close();
     }
