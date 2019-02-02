@@ -10,6 +10,8 @@ import java.util.concurrent.TimeUnit;
 public class BeforeAndAfter {
     private static final String url = "https://epam.github.io/JDI/";
     protected WebDriver driver;
+    protected LoginPage loginPage;
+
 
     @BeforeSuite
     public void openBrowser() {
@@ -20,7 +22,7 @@ public class BeforeAndAfter {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-
+        loginPage = new LoginPage(driver);
     }
 
 

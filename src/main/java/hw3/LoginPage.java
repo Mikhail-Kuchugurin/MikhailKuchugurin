@@ -3,10 +3,8 @@ package hw3;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
-    private WebDriver driver;
+public class LoginPage extends BasePage {
 
 
     @FindBy(xpath = "//img[@id='user-icon']")
@@ -21,11 +19,10 @@ public class LoginPage {
     @FindBy(xpath = "//span[contains(text(),'Enter')]")
     private WebElement btnEnter;
 
-
     public LoginPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+        super(driver);
     }
+
 
     public MainPage performLogin(String user, String pass) {
         btnLogin.click();

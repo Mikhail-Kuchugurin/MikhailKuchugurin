@@ -1,11 +1,13 @@
 package hw3;
 
+import hw3.enums.TextOfElements;
+import hw3.enums.Users;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
-public class MainPage {
+public class MainPage extends BasePage {
     @FindBy(css = "#user-name")
     public WebElement userName;
     @FindBy(xpath = "//a[contains(text(),'Home')]")
@@ -44,12 +46,10 @@ public class MainPage {
     public WebElement leftMenu;
     @FindBy(xpath = "//div[@class='footer-content overflow']")
     public WebElement footer;
-    private WebDriver driver;
 
 
     public MainPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+        super(driver);
     }
 
 
@@ -57,4 +57,85 @@ public class MainPage {
         driver.switchTo().frame("iframe");
         return new FramePage(driver);
     }
+
+    //4 check user name
+    public void checkUserNameAfterLogin() {
+        Assert.assertEquals(userName.getText(), Users.PITER.firstAndLastName);
+    }
+
+    //6 Header buttons are displayed and texts have equal values to expected
+    public void checkHeadersElements() {
+        Assert.assertTrue(menuHome.isDisplayed());
+        Assert.assertTrue(menuContactForm.isDisplayed());
+        Assert.assertTrue(menuService.isDisplayed());
+        Assert.assertTrue(menuMetalColors.isDisplayed());
+        Assert.assertEquals(menuHome.getText(), TextOfElements.MENU_HOME.elementsText);
+        Assert.assertEquals(menuContactForm.getText(), TextOfElements.MENU_CONTACT_FROM.elementsText);
+        Assert.assertEquals(menuService.getText(), TextOfElements.MENU_SERVICE.elementsText);
+        Assert.assertEquals(menuMetalColors.getText(), TextOfElements.MENU_METAL_COLORS.elementsText);
+    }
+
+    //7 Images in the centre of page are displayed
+    public void checkImgsCentreOfPage() {
+        Assert.assertTrue(imgBase.isDisplayed());
+        Assert.assertTrue(imgCustom.isDisplayed());
+        Assert.assertTrue(imgMulti.isDisplayed());
+        Assert.assertTrue(imgPractise.isDisplayed());
+    }
+
+    //8 Texts under images are displayed and have equal values to expected
+    public void checkTextsUnderImages() {
+        Assert.assertTrue(txtPractice.isDisplayed());
+        Assert.assertTrue(txtCustom.isDisplayed());
+        Assert.assertTrue(txtMulti.isDisplayed());
+        Assert.assertTrue(txtBase.isDisplayed());
+        Assert.assertEquals(txtPractice.getText(), TextOfElements.PRACTICE.elementsText);
+        Assert.assertEquals(txtCustom.getText(), TextOfElements.CUSTOM.elementsText);
+        Assert.assertEquals(txtMulti.getText(), TextOfElements.MULTI.elementsText);
+        Assert.assertEquals(txtBase.getText(), TextOfElements.BASE.elementsText);
+
+    }
+
+    //9 Header texts are displayed and have equals values to expected result
+    public void checkHeaderTexts() {
+        Assert.assertTrue(headerTitle.isDisplayed());
+        Assert.assertTrue(headerText.isDisplayed());
+        Assert.assertEquals(headerTitle.getText(), TextOfElements.HEADER_TITLE.elementsText);
+        // TODO Code convention, line length
+        //fixed
+        Assert.assertEquals(headerText.getText(), TextOfElements.HEADER_TEXT.elementsText);
+
+    }
+
+    //10 The iframe exists
+    public void doesFrameExist() {
+        Assert.assertTrue(frame.isDisplayed());
+    }
+
+    //11 switch to frame and check logo
+    public void switchToFrameAndCheckLogo() {
+        Assert.assertTrue(goToFrame().logo.isDisplayed());
+    }
+
+    //13 check text of sub header
+    public void checkOfSubHeaderText() {
+        Assert.assertEquals(subHeaderElement.getText(), TextOfElements.SUB_HEADER.elementsText);
+    }
+
+    //14 Link is displayed and has proper value
+    public void isLinkDisplayedAndCorrect() {
+        Assert.assertTrue(subHeaderElement.isEnabled());
+        Assert.assertEquals(subHeaderElement.getAttribute("href"), "https://github.com/epam/JDI");
+    }
+
+    //15 Left section is displayed
+    public void isLeftMenuDisplayed() {
+        Assert.assertTrue(leftMenu.isDisplayed());
+    }
+
+    //16 Footer is displayed
+    public void isFooterDisplayed() {
+        Assert.assertTrue(footer.isDisplayed());
+    }
+
 }

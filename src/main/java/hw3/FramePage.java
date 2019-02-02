@@ -3,16 +3,13 @@ package hw3;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class FramePage {
+public class FramePage extends BasePage {
     @FindBy(xpath = "//img[@id='epam_logo']")
     public WebElement logo;
-    private WebDriver driver;
 
     public FramePage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+        super(driver);
     }
 
 
