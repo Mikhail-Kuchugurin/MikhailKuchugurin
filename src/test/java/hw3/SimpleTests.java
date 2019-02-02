@@ -7,9 +7,11 @@ import org.testng.annotations.Test;
 
 public class SimpleTests extends BeforeAndAfter {
 
+    // TODO Test should be named with the reflection on it purpose
     @Test()
     public void asserts() {
         //2 Check that Browser title equals "Home Page"
+        // TODO You break several "Best Practice" rules, take a look on "4. Selenide Best Practices" presentation
         Assert.assertEquals(driver.getTitle(), "Home Page");
 
         //3 fill fields login and password
@@ -57,6 +59,7 @@ public class SimpleTests extends BeforeAndAfter {
 
         //9 Texts have equals values to expected result
         Assert.assertEquals(mainPage.headerTitle.getText(), "EPAM FRAMEWORK WISHES…");
+        // TODO Code convention, line length
         Assert.assertEquals(mainPage.headerText.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
         //10 The iframe exists
