@@ -1,5 +1,8 @@
 package hw3.enums;
 
+// TODO It is not really necessary to store whole data on one certain Enum.
+// TODO You can split it with some logic.
+// TODO For the example, Menu items can be stored into different Enum (related with MainPage::line64)
 public enum TextOfElements {
     PRACTICE("To include good practices\nand ideas from successful\nEPAM project"),
     CUSTOM("To be flexible and\ncustomizable"),

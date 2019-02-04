@@ -8,18 +8,18 @@ import org.testng.annotations.Test;
 
 public class SimpleTests extends BeforeAndAfter {
 
-    // TODO Test should be named with the reflection on it purpose
-    // fixed
-    @Test()
+    @Test
     public void loginAndVerificationJdiPage() {
         //2 Check that Browser title equals "Home Page"
-        // TODO You break several "Best Practice" rules, take a look on "4. Selenide Best Practices" presentation
-        // fixed
+        // TODO You can simplified this by static import
         loginPage.checkPageTitle(PageTitles.HOME_PAGE);
 
         //3 fill fields login and password
+        // TODO Why don't you pass the whole User into this method ?
         MainPage mainPage = loginPage.performLogin(Users.PITER.login, Users.PITER.pass);
 
+        // TODO You have passed arguments in method from step 3, but you have not passed it here. Why ?
+        // TODO From my perspective, this method should be parametrised as well.
         //4 check user name
         mainPage.checkUserNameAfterLogin();
 
