@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 
-
     @FindBy(xpath = "//img[@id='user-icon']")
     private WebElement btnLogin;
 
@@ -22,7 +21,6 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
-
 
     public MainPage performLogin(String user, String pass) {
         btnLogin.click();

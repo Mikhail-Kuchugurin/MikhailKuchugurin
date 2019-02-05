@@ -47,11 +47,9 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//div[@class='footer-content overflow']")
     public WebElement footer;
 
-
     public MainPage(WebDriver driver) {
         super(driver);
     }
-
 
     public FramePage goToFrame() {
         driver.switchTo().frame("iframe");
@@ -63,8 +61,12 @@ public class MainPage extends BasePage {
         Assert.assertEquals(userName.getText(), Users.PITER.firstAndLastName);
     }
 
+    // TODO This method should be parametrised
     //6 Header buttons are displayed and texts have equal values to expected
     public void checkHeadersElements() {
+        // TODO I assume that it will be easier with for loop. In order to do that you can:
+        // TODO 1. to create locator that provide you with the list of an WebElements
+        // TODO 2. create the collection that contains all the menu-elements
         Assert.assertTrue(menuHome.isDisplayed());
         Assert.assertTrue(menuContactForm.isDisplayed());
         Assert.assertTrue(menuService.isDisplayed());
@@ -84,6 +86,7 @@ public class MainPage extends BasePage {
     }
 
     //8 Texts under images are displayed and have equal values to expected
+    // TODO Similar situation like MainPage::checkHeadersElements
     public void checkTextsUnderImages() {
         Assert.assertTrue(txtPractice.isDisplayed());
         Assert.assertTrue(txtCustom.isDisplayed());
@@ -97,12 +100,11 @@ public class MainPage extends BasePage {
     }
 
     //9 Header texts are displayed and have equals values to expected result
+    // TODO This method should be parametrised as well
     public void checkHeaderTexts() {
         Assert.assertTrue(headerTitle.isDisplayed());
         Assert.assertTrue(headerText.isDisplayed());
         Assert.assertEquals(headerTitle.getText(), TextOfElements.HEADER_TITLE.elementsText);
-        // TODO Code convention, line length
-        //fixed
         Assert.assertEquals(headerText.getText(), TextOfElements.HEADER_TEXT.elementsText);
 
     }
