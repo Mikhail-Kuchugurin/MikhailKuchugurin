@@ -11,5 +11,5 @@ public class FramePage extends BasePage {
     public FramePage(WebDriver driver) {
         super(driver);
     }
-    
+
 }

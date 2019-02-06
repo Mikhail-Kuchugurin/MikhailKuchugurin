@@ -35,14 +35,10 @@ public class DifferentElementsPage extends BasePage {
     //8 Check interface on Different elements page, it contains all needed elements
     public void doElementsExist() {
         //Verify checkbox
-        for (SelenideElement i : checkBoxes) {
-            i.exists();
-        }
+        checkBoxes.forEach(s->s.exists());
 
         //Verify radio buttons
-        for (SelenideElement i : radioBtns) {
-            i.exists();
-        }
+        radioBtns.forEach(s->s.exists());
 
         //Verify dropdown
         dropDownList.exists();

@@ -9,11 +9,8 @@ import java.util.List;
 
 public class CollectionsUtils {
     public static void compareCollections(ElementsCollection elementsCollection, List<String> expected) {
-        List<String> listOfTexts = new ArrayList<String>();
-        for (SelenideElement i : elementsCollection) {
-            i.exists();
-            listOfTexts.add(i.getText());
-        }
+        final List<String> listOfTexts = new ArrayList<String>();
+        elementsCollection.forEach(s->listOfTexts.add(s.getText()));
         Assert.assertTrue(listOfTexts.retainAll(expected));
     }
 }
