@@ -12,15 +12,15 @@ public class BeforeAndAfter {
 
 
     @BeforeSuite
-    public void openBrowser() {
+    public void setParams() {
         //1 Run browser and open test site
-        open("https://epam.github.io/JDI/");
         Configuration.startMaximized = true;
         Configuration.timeout = 5000;
         Configuration.pollingInterval = 500;
+        open("https://epam.github.io/JDI/");
         loginPage = page(LoginPage.class);
-    }
 
+    }
 
     @AfterSuite
     public void closeBrowser() {

@@ -2,6 +2,7 @@ package hw4;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import hw4.enums.Users;
 import hw4.utils.CollectionsUtils;
 import org.openqa.selenium.support.FindBy;
 
@@ -24,23 +25,24 @@ public class MainPage extends BasePage {
     @FindBy(css = "li.dropdown.open > ul > li")
     public ElementsCollection headerServiceMenu;
 
-    @FindBy(xpath = "//ul[@class='sub']/li")
+    @FindBy(css = "li[index='3']  > ul.sub > li")
     public ElementsCollection leftServiceMenu;
 
 
     //4 check user name
-    public void checkUserNameAfterLogin(String fullName) {
-        userName.should(text(fullName));
+    public void checkUserNameAfterLogin(Users user) {
+        userName.should(text(user.firstAndLastName));
     }
 
     //part 1, step 5 check that Header Service drop down contains options
-    public void checkHeaderServiceMenu(ElementsCollection elementsCollection, List<String> list) {
-        CollectionsUtils.compareCollections(elementsCollection, list);
+    public void checkHeaderServiceMenu(List<String> list) {
+        CollectionsUtils.compareCollections(headerServiceMenu, list);
     }
 
     //6 check that Left Service drop down contains options
-    public void checkLeftServiceMenu(ElementsCollection elementsCollection, List<String> list) {
-        CollectionsUtils.compareCollections(elementsCollection, list);
+    public void checkLeftServiceMenu(List<String> list) throws InterruptedException {
+        Thread.sleep(5000);
+        CollectionsUtils.compareCollections(leftServiceMenu, list);
     }
 
     //7 Open through the header menu Service -> Different Elements Page

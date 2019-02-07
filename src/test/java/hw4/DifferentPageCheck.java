@@ -25,25 +25,25 @@ public class DifferentPageCheck extends BeforeAndAfter {
     }
 
 
-    @Test(priority = 1)
-    public void loginAndVerificationDifElementsPage() {
+    @Test
+    public void loginAndVerificationDifElementsPage() throws InterruptedException {
 
         //2 Check that Browser title equals "Home Page"
         loginPage.checkPageTitle(PageTitles.HOME_PAGE);
 
         //3 fill fields login and password
-        MainPage mainPage = loginPage.performLogin(Users.PITER.login, Users.PITER.pass);
+        MainPage mainPage = loginPage.performLogin(Users.PITER);
 
         //4 check user name
-        mainPage.checkUserNameAfterLogin(Users.PITER.firstAndLastName);
+        mainPage.checkUserNameAfterLogin(Users.PITER);
 
         //5 Click on "Service" subcategory in the header and check that drop down contains options
         mainPage.headerService.click();
-        mainPage.checkHeaderServiceMenu(mainPage.headerServiceMenu, ServiceElements.getValues());
+        mainPage.checkHeaderServiceMenu(ServiceElements.getValues());
 
         //6 Click on Service subcategory in the left section and check that drop down contains options
         mainPage.leftMenuService.click();
-        mainPage.checkLeftServiceMenu(mainPage.leftServiceMenu, ServiceElements.getValues());
+        mainPage.checkLeftServiceMenu(ServiceElements.getValues());
 
         //7 Open through the header menu Service -> Different Elements Page
         DifferentElementsPage differentElementsPage = mainPage.openDifferentElements();
@@ -56,17 +56,13 @@ public class DifferentPageCheck extends BeforeAndAfter {
 
         //10 Assert that there is Left Section
         differentElementsPage.isLeftSectionDisplayed();
-
-
     }
 
     //Steps 11-18. Click button and check log
-    @Test(priority = 2, dataProvider = "BtnAndResults")
+    @Test(dependsOnMethods = "loginAndVerificationDifElementsPage", dataProvider = "BtnAndResults")
     public void selectCheckBoxAndCheckLogs(String btnLct, String actualResultLocator, String expectedResult) {
-        DifferentElementsPage differentElementsPage = new DifferentElementsPage();
-        differentElementsPage.selectCheckBoxes(btnLct, actualResultLocator, expectedResult);
+        new DifferentElementsPage().selectObjectAndCheckLog(btnLct, actualResultLocator, expectedResult);
     }
-
 
 }
 

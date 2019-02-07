@@ -19,16 +19,16 @@ public class DatesPageCheck extends BeforeAndAfter {
 
     }
 
-    @Test(priority = 1)
+    @Test
     public void loginAndVerificationDatesPage() {
         //2 Check that Browser title equals "Home Page"
         loginPage.checkPageTitle(PageTitles.HOME_PAGE);
 
         //3 fill fields login and password
-        MainPage mainPage = loginPage.performLogin(Users.PITER.login, Users.PITER.pass);
+        MainPage mainPage = loginPage.performLogin(Users.PITER);
 
         //4 check user name
-        mainPage.checkUserNameAfterLogin(Users.PITER.firstAndLastName);
+        mainPage.checkUserNameAfterLogin(Users.PITER);
 
         //5 Open through the header menu Service -> Dates Page
         mainPage.openDatesPage();
@@ -36,10 +36,9 @@ public class DatesPageCheck extends BeforeAndAfter {
     }
 
     //steps 6-13 move sliders and check logs
-    @Test(priority = 2, dataProvider = "SlidersAndResults")
-    public void moveSlidersAndCheckLogs(double xFrom, String resultFrom, double xTo, String resultTo) throws InterruptedException {
-        DatesPage datesPage = new DatesPage();
-        datesPage.moveSlidersAndCheckLogs(xFrom, resultFrom, xTo, resultTo);
+    @Test(dependsOnMethods = "loginAndVerificationDatesPage", dataProvider = "SlidersAndResults")
+    public void moveSlidersAndCheckLogs(double xFrom, String resultFrom, double xTo, String resultTo) {
+        new DatesPage().moveSlidersAndCheckLogs(xFrom, resultFrom, xTo, resultTo);
     }
 
 

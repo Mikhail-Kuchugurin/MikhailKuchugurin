@@ -1,6 +1,7 @@
 package hw4;
 
 import com.codeborne.selenide.SelenideElement;
+import hw4.enums.Users;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.page;
@@ -19,10 +20,10 @@ public class LoginPage extends BasePage {
     @FindBy(css = "#login-button")
     private SelenideElement btnEnter;
 
-    public MainPage performLogin(String user, String pass) {
+    public MainPage performLogin(Users user) {
         btnLogin.click();
-        fldLogin.sendKeys(user);
-        fldPassword.sendKeys(pass);
+        fldLogin.sendKeys(user.login);
+        fldPassword.sendKeys(user.pass);
         btnEnter.click();
         return page(MainPage.class);
     }

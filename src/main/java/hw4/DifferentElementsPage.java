@@ -35,10 +35,10 @@ public class DifferentElementsPage extends BasePage {
     //8 Check interface on Different elements page, it contains all needed elements
     public void doElementsExist() {
         //Verify checkbox
-        checkBoxes.forEach(s->s.exists());
+        checkBoxes.forEach(s -> s.exists());
 
         //Verify radio buttons
-        radioBtns.forEach(s->s.exists());
+        radioBtns.forEach(s -> s.exists());
 
         //Verify dropdown
         dropDownList.exists();
@@ -60,7 +60,7 @@ public class DifferentElementsPage extends BasePage {
     }
 
     //Steps 11-18. Click button and check log
-    public void selectCheckBoxes(String btnLct, String actualResultLocator, String expectedResult) {
+    public void selectObjectAndCheckLog(String btnLct, String actualResultLocator, String expectedResult) {
         $(By.cssSelector(btnLct)).click();
         $(By.cssSelector(actualResultLocator)).should(text(expectedResult));
     }
