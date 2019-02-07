@@ -8,7 +8,10 @@ import java.util.List;
 
 public class CollectionsUtils {
     public static void compareCollections(ElementsCollection elementsCollection, List<String> expected) {
-        final List<String> listOfTexts = new ArrayList<String>();
+        // TODO This can be improved, take a look on List::containsAll or compare it by cycle.
+        // TODO Basically, you should not use lambda expressions in this way.
+        // TODO If you want to transform collection use stream.map method
+        final List<String> listOfTexts = new ArrayList<>();
         elementsCollection.forEach(s -> listOfTexts.add(s.getText()));
         Assert.assertTrue(listOfTexts.retainAll(expected));
     }

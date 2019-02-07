@@ -18,7 +18,7 @@ public enum ServiceElements {
     }
 
     public static List<String> getValues() {
-        List<String> values = new ArrayList<String>();
+        List<String> values = new ArrayList<>();
         for (ServiceElements i : ServiceElements.values()) {
             values.add(i.parameter);
         }

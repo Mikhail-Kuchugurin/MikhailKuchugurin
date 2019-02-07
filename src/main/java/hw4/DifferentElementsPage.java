@@ -34,6 +34,7 @@ public class DifferentElementsPage extends BasePage {
 
     //8 Check interface on Different elements page, it contains all needed elements
     public void doElementsExist() {
+        // TODO Take a look on IDEA warning.
         //Verify checkbox
         checkBoxes.forEach(s -> s.exists());
 
@@ -46,7 +47,6 @@ public class DifferentElementsPage extends BasePage {
         //Verify buttons
         defaultBtn.exists();
         inputBtn.exists();
-
     }
 
     //9 Assert that there is Right Section

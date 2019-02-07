@@ -10,6 +10,9 @@ import org.testng.annotations.Test;
 
 public class DifferentPageCheck extends BeforeAndAfter {
 
+    // TODO In general, this is quite uncommon approach, hard to maintain, hard  to understand.
+    // TODO This is completely prohibited to parametrise PO-tests by locators, locators should be in PO only.
+    // TODO Anyway, this locators should be improved.
     @DataProvider(name = "BtnAndResults")
     public static Object[][] BtnAndResults() {
         return new Object[][]{
@@ -37,6 +40,7 @@ public class DifferentPageCheck extends BeforeAndAfter {
         //4 check user name
         mainPage.checkUserNameAfterLogin(Users.PITER);
 
+        // TODO It will be quite better if you create one single method that can be used for open any page on the portal.
         //5 Click on "Service" subcategory in the header and check that drop down contains options
         mainPage.headerService.click();
         mainPage.checkHeaderServiceMenu(ServiceElements.getValues());
@@ -48,9 +52,12 @@ public class DifferentPageCheck extends BeforeAndAfter {
         //7 Open through the header menu Service -> Different Elements Page
         DifferentElementsPage differentElementsPage = mainPage.openDifferentElements();
 
+        // TODO All methods within assertion should has prefix check/verify/...
         //8 Check interface on Different elements page, it contains all needed elements
         differentElementsPage.doElementsExist();
 
+        // TODO Basically, methods with IS prefix should return the value.
+        // TODO Take a look on comment from line 55
         //9 Assert that there is Right Section
         differentElementsPage.isRightSectionDisplayed();
 
