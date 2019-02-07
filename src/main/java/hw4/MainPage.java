@@ -28,7 +28,6 @@ public class MainPage extends BasePage {
     @FindBy(css = "li[index='3']  > ul.sub > li")
     public ElementsCollection leftServiceMenu;
 
-
     //4 check user name
     public void checkUserNameAfterLogin(Users user) {
         userName.should(text(user.firstAndLastName));
@@ -40,7 +39,14 @@ public class MainPage extends BasePage {
     }
 
     //6 check that Left Service drop down contains options
+
+    public void checkLeftServiceMenu(List<String> list) throws InterruptedException {
+        // TODO This is not make a sense to use Thread.sleep here, take a look on selenum/selenide waiters
+        // TODO Anyway, it is not the best idea to throw this exception, you can create a wrapper for example.
+        Thread.sleep(5000);
+
     public void checkLeftServiceMenu(List<String> list)  {
+
         CollectionsUtils.compareCollections(leftServiceMenu, list);
     }
 
