@@ -26,7 +26,7 @@ public class DifferentPageCheck extends BeforeAndAfter {
 
 
     @Test
-    public void loginAndVerificationDifElementsPage() throws InterruptedException {
+    public void loginAndVerificationDifElementsPage() {
 
         //2 Check that Browser title equals "Home Page"
         loginPage.checkPageTitle(PageTitles.HOME_PAGE);

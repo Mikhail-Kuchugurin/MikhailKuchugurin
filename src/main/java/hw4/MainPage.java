@@ -40,8 +40,7 @@ public class MainPage extends BasePage {
     }
 
     //6 check that Left Service drop down contains options
-    public void checkLeftServiceMenu(List<String> list) throws InterruptedException {
-        Thread.sleep(5000);
+    public void checkLeftServiceMenu(List<String> list)  {
         CollectionsUtils.compareCollections(leftServiceMenu, list);
     }
 
