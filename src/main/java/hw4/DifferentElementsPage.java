@@ -10,9 +10,11 @@ import org.openqa.selenium.support.FindBy;
 
 public class DifferentElementsPage extends BasePage {
 
+    // TODO This locator should be improved
     @FindBy(css = "div.main-content > div > button")
     public SelenideElement defaultBtn;
 
+    // TODO This locator should be improved
     @FindBy(css = "div.main-content > div > input")
     public SelenideElement inputBtn;
 
@@ -35,6 +37,7 @@ public class DifferentElementsPage extends BasePage {
     public ElementsCollection checkAndRadioBtn;
 
     private void clickBtn(ElementsCollection elementsCollection, ButtonsAndColors buttons) {
+        // TODO You have to use one of the ElementsCollection default method here
         elementsCollection.stream()
                 .filter(selenideElement -> selenideElement.getText().equals(buttons.params))
                 .findFirst()
@@ -45,8 +48,6 @@ public class DifferentElementsPage extends BasePage {
 
     //8 Check interface on Different elements page, it contains all needed elements
     public void verifyElements() {
-        //fixed
-        // TODO Take a look on IDEA warning.
         //Verify checkbox and radio buttons
         checkAndRadioBtn.forEach(SelenideElement::exists);
 

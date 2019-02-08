@@ -7,12 +7,6 @@ import org.testng.annotations.Test;
 
 public class DifferentPageCheck extends BeforeAndAfter {
 
-    //fixed
-    // TODO In general, this is quite uncommon approach, hard to maintain, hard  to understand.
-    // TODO This is completely prohibited to parametrise PO-tests by locators, locators should be in PO only.
-    // TODO Anyway, this locators should be improved.
-
-
     @Test
     public void loginAndVerificationDifElementsPage() {
 
@@ -37,14 +31,9 @@ public class DifferentPageCheck extends BeforeAndAfter {
         //7 Open through the header menu Service -> Different Elements Page
         DifferentElementsPage differentElementsPage = mainPage.openDifferentElements();
 
-        //fixed
-        // TODO All methods within assertion should has prefix check/verify/...
         //8 Check interface on Different elements page, it contains all needed elements
         differentElementsPage.verifyElements();
 
-        //fixed
-        // TODO Basically, methods with IS prefix should return the value.
-        // TODO Take a look on comment from line 55
         //9 Assert that there is Right Section
         differentElementsPage.checkRightSection();
 
@@ -52,8 +41,9 @@ public class DifferentPageCheck extends BeforeAndAfter {
         differentElementsPage.checkLeftSection();
 
 
+        // TODO You should not mix up action and verification in one single method
         //11-12 Select checkboxes and check logs 
-        differentElementsPage.selectObjectAndCheckLog(ButtonsAndColors.WATER.WATER, ExpectedLogs.WATER_TRUE);
+        differentElementsPage.selectObjectAndCheckLog(ButtonsAndColors.WATER, ExpectedLogs.WATER_TRUE);
         differentElementsPage.selectObjectAndCheckLog(ButtonsAndColors.WIND, ExpectedLogs.WIND_TRUE);
 
         //13-14 Select radioBtn and check logs 
@@ -63,7 +53,7 @@ public class DifferentPageCheck extends BeforeAndAfter {
         differentElementsPage.selectColorAndCheckLog(ButtonsAndColors.YELLOW, ExpectedLogs.YELLOW);
 
         //17-18 Unselect checkboxes and check logs
-        differentElementsPage.selectObjectAndCheckLog(ButtonsAndColors.WATER.WATER, ExpectedLogs.WATER_FALSE);
+        differentElementsPage.selectObjectAndCheckLog(ButtonsAndColors.WATER, ExpectedLogs.WATER_FALSE);
         differentElementsPage.selectObjectAndCheckLog(ButtonsAndColors.WIND, ExpectedLogs.WIND_FALSE);
 
     }

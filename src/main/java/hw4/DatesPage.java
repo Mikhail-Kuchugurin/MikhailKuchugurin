@@ -12,9 +12,11 @@ public class DatesPage extends BasePage {
     @FindBy(css = "div#mCSB_2_container li")
     public SelenideElement lastLog;
 
+    // TODO This locator can be improved
     @FindBy(css = "div:nth-child(4) > div:nth-child(2) > div > a")
     public ElementsCollection sliders;
 
+    // TODO This locator can be improved
     @FindBy(css = "div:nth-child(4) > div:nth-child(2) > div")
     public SelenideElement track;
 
@@ -23,6 +25,7 @@ public class DatesPage extends BasePage {
 
         double trackWidth = track.getSize().width;
 
+        // TODO You have a code duplication here, it will be better with additional private method
         builder.clickAndHold(sliders.get(0)).moveToElement(track, (int) (trackWidth * (xFrom)), 0).release().build().perform();
         lastLog.should(Condition.text(resultFrom + " link clicked"));
 
