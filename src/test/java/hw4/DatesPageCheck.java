@@ -2,22 +2,10 @@ package hw4;
 
 import hw4.enums.PageTitles;
 import hw4.enums.Users;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
 public class DatesPageCheck extends BeforeAndAfter {
-
-
-    @DataProvider(name = "SlidersAndResults")
-    public static Object[][] SlidersAndResults() {
-        return new Object[][]{
-                {0.0, "0", 1.0, "100"},
-                {0.0, "0", 0.0, "0"},
-                {1.0, "100", 1.0, "100"},
-                {0.305, "30", 0.7, "70"}};
-
-    }
 
     @Test
     public void loginAndVerificationDatesPage() {
@@ -31,15 +19,20 @@ public class DatesPageCheck extends BeforeAndAfter {
         mainPage.checkUserNameAfterLogin(Users.PITER);
 
         //5 Open through the header menu Service -> Dates Page
-        mainPage.openDatesPage();
+        DatesPage datesPage = mainPage.openDatesPage();
+
+        //6-7 move sliders and assert that for "From" and "To" sliders there are logs rows with corresponding values
+        datesPage.moveSlidersAndCheckLogs(0.0, "0", 1.0, "100");
+
+        //8-9 move sliders and assert that for "From" and "To" sliders there are logs rows with corresponding values
+        datesPage.moveSlidersAndCheckLogs(0.0, "0", 0.0, "0");
+
+        //10-11 move sliders and assert that for "From" and "To" sliders there are logs rows with corresponding values
+        datesPage.moveSlidersAndCheckLogs(1.0, "100", 1.0, "100");
+
+        //10-11 move sliders and assert that for "From" and "To" sliders there are logs rows with corresponding values
+        datesPage.moveSlidersAndCheckLogs(0.305, "30", 0.7, "70");
 
     }
-
-    //steps 6-13 move sliders and check logs
-    @Test(dependsOnMethods = "loginAndVerificationDatesPage", dataProvider = "SlidersAndResults")
-    public void moveSlidersAndCheckLogs(double xFrom, String resultFrom, double xTo, String resultTo) {
-        new DatesPage().moveSlidersAndCheckLogs(xFrom, resultFrom, xTo, resultTo);
-    }
-
 
 }

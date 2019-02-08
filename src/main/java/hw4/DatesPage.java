@@ -18,17 +18,17 @@ public class DatesPage extends BasePage {
     @FindBy(css = "div:nth-child(4) > div:nth-child(2) > div")
     public SelenideElement track;
 
-
     public void moveSlidersAndCheckLogs(double xFrom, String resultFrom, double xTo, String resultTo) {
-
         Actions builder = new Actions(getWebDriver());
 
         double trackWidth = track.getSize().width;
 
         builder.clickAndHold(sliders.get(0)).moveToElement(track, (int) (trackWidth * (xFrom)), 0).release().build().perform();
         lastLog.should(Condition.text(resultFrom + " link clicked"));
+
         builder.clickAndHold(sliders.get(1)).moveToElement(track, (int) (trackWidth * (xTo)), 0).release().build().perform();
         lastLog.should(Condition.text(resultTo + " link clicked"));
+
     }
 
 

@@ -1,18 +1,14 @@
 package hw4;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.By;
+import hw4.enums.ButtonsAndColors;
+import hw4.enums.ExpectedLogs;
 import org.openqa.selenium.support.FindBy;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
 
 
 public class DifferentElementsPage extends BasePage {
-
-    @FindBy(css = "div.colors > select")
-    public SelenideElement dropDownList;
 
     @FindBy(css = "div.main-content > div > button")
     public SelenideElement defaultBtn;
@@ -26,23 +22,36 @@ public class DifferentElementsPage extends BasePage {
     @FindBy(css = "#mCSB_1")
     public SelenideElement leftSection;
 
-    @FindBy(css = ".label-checkbox")
-    public ElementsCollection checkBoxes;
+    @FindBy(css = "div#mCSB_2_container li:nth-child(1)")
+    public SelenideElement lastLog;
 
-    @FindBy(css = ".label-radio")
-    public ElementsCollection radioBtns;
+    @FindBy(css = "select.uui-form-element")
+    public SelenideElement dropDown;
+
+    @FindBy(css = ".uui-form-element > option")
+    public ElementsCollection dropDownColors;
+
+    @FindBy(css = "div.checkbox-row > label")
+    public ElementsCollection checkAndRadioBtn;
+
+    private void clickBtn(ElementsCollection elementsCollection, ButtonsAndColors buttons) {
+        elementsCollection.stream()
+                .filter(selenideElement -> selenideElement.getText().equals(buttons.params))
+                .findFirst()
+                .orElse(null)
+                .click();
+    }
+
 
     //8 Check interface on Different elements page, it contains all needed elements
-    public void doElementsExist() {
+    public void verifyElements() {
+        //fixed
         // TODO Take a look on IDEA warning.
-        //Verify checkbox
-        checkBoxes.forEach(s -> s.exists());
-
-        //Verify radio buttons
-        radioBtns.forEach(s -> s.exists());
+        //Verify checkbox and radio buttons
+        checkAndRadioBtn.forEach(SelenideElement::exists);
 
         //Verify dropdown
-        dropDownList.exists();
+        dropDown.exists();
 
         //Verify buttons
         defaultBtn.exists();
@@ -50,20 +59,26 @@ public class DifferentElementsPage extends BasePage {
     }
 
     //9 Assert that there is Right Section
-    public void isRightSectionDisplayed() {
+    public void checkRightSection() {
         rightSection.isDisplayed();
     }
 
     //10 Assert that there is Left Section
-    public void isLeftSectionDisplayed() {
+    public void checkLeftSection() {
         leftSection.isDisplayed();
     }
 
-    //Steps 11-18. Click button and check log
-    public void selectObjectAndCheckLog(String btnLct, String actualResultLocator, String expectedResult) {
-        $(By.cssSelector(btnLct)).click();
-        $(By.cssSelector(actualResultLocator)).should(text(expectedResult));
+    //Click button and check log
+    public void selectObjectAndCheckLog(ButtonsAndColors buttons, ExpectedLogs logs) {
+        clickBtn(checkAndRadioBtn, buttons);
+        lastLog.should(Condition.text(logs.parameter));
     }
 
+    //Open dropdown, select color and check log
+    public void selectColorAndCheckLog(ButtonsAndColors buttons, ExpectedLogs logs) {
+        dropDown.click();
+        clickBtn(dropDownColors, buttons);
+        lastLog.should(Condition.text(logs.parameter));
+    }
 
 }

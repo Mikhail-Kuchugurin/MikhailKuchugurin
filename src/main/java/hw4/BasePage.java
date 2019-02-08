@@ -15,4 +15,5 @@ public abstract class BasePage {
     public void checkPageTitle(PageTitles pageTitles) {
         Assert.assertEquals(getWebDriver().getTitle(), pageTitles.pageTitle);
     }
+
 }

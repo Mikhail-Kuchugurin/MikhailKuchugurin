@@ -1,31 +1,16 @@
 package hw4;
 
 
-import hw4.enums.PageTitles;
-import hw4.enums.ServiceElements;
-import hw4.enums.Users;
-import org.testng.annotations.DataProvider;
+import hw4.enums.*;
 import org.testng.annotations.Test;
 
 
 public class DifferentPageCheck extends BeforeAndAfter {
 
+    //fixed
     // TODO In general, this is quite uncommon approach, hard to maintain, hard  to understand.
     // TODO This is completely prohibited to parametrise PO-tests by locators, locators should be in PO only.
     // TODO Anyway, this locators should be improved.
-    @DataProvider(name = "BtnAndResults")
-    public static Object[][] BtnAndResults() {
-        return new Object[][]{
-                {"div.main-content > div > div:nth-child(2) > label:nth-child(1)", "div#mCSB_2_container li:nth-child(1)",
-                        "Water: condition changed to true"},
-                {"div:nth-child(2) > label:nth-child(3)", "div#mCSB_2_container li:nth-child(1)", "Wind: condition changed to true"},
-                {"div:nth-child(3) > label:nth-child(4)", "div#mCSB_2_container li:nth-child(1)", "metal: value changed to Selen"},
-                {"div.colors > select > option:nth-child(4)", "div#mCSB_2_container li:nth-child(1)", "Colors: value changed to Yellow"},
-                {"div.main-content > div > div:nth-child(2) > label:nth-child(1)", "div#mCSB_2_container li:nth-child(1)",
-                        "Water: condition changed to false"},
-                {"div:nth-child(2) > label:nth-child(3)", "div#mCSB_2_container li:nth-child(1)", "Wind: condition changed to false"}};
-
-    }
 
 
     @Test
@@ -52,23 +37,35 @@ public class DifferentPageCheck extends BeforeAndAfter {
         //7 Open through the header menu Service -> Different Elements Page
         DifferentElementsPage differentElementsPage = mainPage.openDifferentElements();
 
+        //fixed
         // TODO All methods within assertion should has prefix check/verify/...
         //8 Check interface on Different elements page, it contains all needed elements
-        differentElementsPage.doElementsExist();
+        differentElementsPage.verifyElements();
 
+        //fixed
         // TODO Basically, methods with IS prefix should return the value.
         // TODO Take a look on comment from line 55
         //9 Assert that there is Right Section
-        differentElementsPage.isRightSectionDisplayed();
+        differentElementsPage.checkRightSection();
 
         //10 Assert that there is Left Section
-        differentElementsPage.isLeftSectionDisplayed();
-    }
+        differentElementsPage.checkLeftSection();
 
-    //Steps 11-18. Click button and check log
-    @Test(dependsOnMethods = "loginAndVerificationDifElementsPage", dataProvider = "BtnAndResults")
-    public void selectCheckBoxAndCheckLogs(String btnLct, String actualResultLocator, String expectedResult) {
-        new DifferentElementsPage().selectObjectAndCheckLog(btnLct, actualResultLocator, expectedResult);
+
+        //11-12 Select checkboxes and check logs 
+        differentElementsPage.selectObjectAndCheckLog(ButtonsAndColors.WATER.WATER, ExpectedLogs.WATER_TRUE);
+        differentElementsPage.selectObjectAndCheckLog(ButtonsAndColors.WIND, ExpectedLogs.WIND_TRUE);
+
+        //13-14 Select radioBtn and check logs 
+        differentElementsPage.selectObjectAndCheckLog(ButtonsAndColors.SELEN, ExpectedLogs.SELEN);
+
+        //15-16 Select dropdown and check logs 
+        differentElementsPage.selectColorAndCheckLog(ButtonsAndColors.YELLOW, ExpectedLogs.YELLOW);
+
+        //17-18 Unselect checkboxes and check logs
+        differentElementsPage.selectObjectAndCheckLog(ButtonsAndColors.WATER.WATER, ExpectedLogs.WATER_FALSE);
+        differentElementsPage.selectObjectAndCheckLog(ButtonsAndColors.WIND, ExpectedLogs.WIND_FALSE);
+
     }
 
 }

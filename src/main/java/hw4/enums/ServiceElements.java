@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum ServiceElements {
-    SUPPORT("Support"),
-    DATES("Dates"),
-    COMPLEX_TABLE("Complex Table"),
-    SIMPLE_TABLE("Simple Table"),
-    TABLES_WITH_PAGES("Tables With Pages"),
-    DIFFERENT_ELEMENTS("Different Elements");
+    SUPPORT("SUPPORT"),
+    DATES("DATES"),
+    COMPLEX_TABLE("COMPLEX TABLE"),
+    SIMPLE_TABLE("SIMPLE TABLE"),
+    TABLES_WITH_PAGES("TABLES WITH PAGES"),
+    DIFFERENT_ELEMENTS("DIFFERENT ELEMENTS");
 
     String parameter;
 
