@@ -17,10 +17,13 @@ public class DatesPageCheck extends BeforeAndAfter {
 
         //4 check user name
         mainPage.checkUserNameAfterLogin(Users.PITER);
-
         //5 Open through the header menu Service -> Dates Page
         DatesPage datesPage = mainPage.openDatesPage();
 
+        // TODO You should not mix up action and verification in one single method
+        // TODO Slider works in [0 : 100] integer range, therefore this method should take the values from it only.
+        // TODO It is not make sense to pass numbers and strings in one time.
+        // TODO In general, you have to pass integers only
         //6-7 move sliders and assert that for "From" and "To" sliders there are logs rows with corresponding values
         datesPage.moveSlidersAndCheckLogs(0.0, "0", 1.0, "100");
 
