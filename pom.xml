@@ -36,8 +36,12 @@
                     <properties>
                         <property>
                             <name>listener</name>
-                            <value>ru.yandex.qatools.allure.testng.AllureTestListener</value>
+                            <value>yandex.qatools.allure.testng.AllureTestListener</value>
                         </property>
+                        <proprty>
+                            <name>allure.results.directory</name>
+                            <value>${project.build.directory}/allure-results</value>
+                        </proprty>
                     </properties>
                 </configuration>
                 <dependencies>
@@ -50,6 +54,17 @@
             </plugin>
         </plugins>
     </build>
+
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>ru.yandex.qatools.allure</groupId>
+                <artifactId>allure-maven-plugin</artifactId>
+                <version>2.6</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <dependencies>
         <dependency>
@@ -73,7 +88,7 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.9.0</version>
+            <version>2.7.0</version>
         </dependency>
 
     </dependencies>
