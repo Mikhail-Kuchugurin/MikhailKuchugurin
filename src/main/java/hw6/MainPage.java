@@ -3,13 +3,9 @@ package hw6;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import hw6.enums.Users;
-import hw6.utils.CollectionsUtils;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.page;
 
 public class MainPage extends BasePage {
 
@@ -22,7 +18,7 @@ public class MainPage extends BasePage {
     @FindBy(css = "div#mCSB_1_container ul > li:nth-child(3) > a > span")
     public SelenideElement leftMenuService;
 
-    @FindBy(css = "li.dropdown.open > ul > li")
+    @FindBy(xpath = "//ul[@class='dropdown-menu']/li/a")
     public ElementsCollection headerServiceMenu;
 
     @FindBy(css = "li[index='3']  > ul.sub > li")

@@ -6,7 +6,8 @@ public enum ExpectedLogs {
     SELEN("metal: value changed to Selen"),
     YELLOW("Colors: value changed to Yellow"),
     WATER_FALSE("Water: condition changed to false"),
-    WIND_FALSE("Wind: condition changed to false");
+    WIND_FALSE("Wind: condition changed to false"),
+    SERGEI_IVAN("Vip: condition changed to true");
 
     public String parameter;
 

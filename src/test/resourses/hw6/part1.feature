@@ -2,7 +2,7 @@ Feature: Verify home page, login and diff elements page
 
   @Test-01
   Scenario: Home page, login and diff elements test
-    Given Test page is opened
+    Given I am on "Home Page"
     Then Page title is 'Home_Page'
     When I login as user 'Piter'
     Then I am logged as 'Piter'

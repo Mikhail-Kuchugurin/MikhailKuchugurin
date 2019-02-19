@@ -1,10 +1,8 @@
 package hw6;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import hw6.enums.ButtonsAndColors;
-import hw6.enums.ExpectedLogs;
 import org.openqa.selenium.support.FindBy;
 
 
@@ -66,9 +64,6 @@ public class DifferentElementsPage extends BasePage {
     public void checkLeftSection() {
         leftSection.isDisplayed();
     }
-
-
-
 
 
 }
